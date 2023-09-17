@@ -1,5 +1,5 @@
 <?php
-namespace SKYFILLERS\SfFilecollectionGallery\Controller;
+namespace WapplerSystems\FilecollectionGallery\Controller;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -14,75 +14,26 @@ namespace SKYFILLERS\SfFilecollectionGallery\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
-use SKYFILLERS\SfFilecollectionGallery\Service\FileCollectionService;
-use SKYFILLERS\SfFilecollectionGallery\Service\FolderService;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Resource\Collection\AbstractFileCollection;
 use TYPO3\CMS\Core\Resource\FileCollectionRepository;
+use WapplerSystems\FilecollectionGallery\Service\FileCollectionService;
+use WapplerSystems\FilecollectionGallery\Service\FolderService;
 
 /**
  * GalleryController
  *
- * @author Jöran Kurschatke <info@joerankurschatke.de>
+ * @author Sven Wappler <typo3@wappler.systems>
  */
 class GalleryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
 
-    /**
-     * File Collection Service
-     *
-     * @var \SKYFILLERS\SfFilecollectionGallery\Service\FileCollectionService
-     */
-    protected $fileCollectionService;
 
-    /**
-     * Collection Repository
-     *
-     * @var \TYPO3\CMS\Core\Resource\FileCollectionRepository
-     */
-    protected $fileCollectionRepository;
-
-    /**
-     * Folder Service
-     *
-     * @var \SKYFILLERS\SfFilecollectionGallery\Service\FolderService
-     */
-    protected $folderService;
-
-    /**
-     * Inject the FileCollectionService
-     *
-     * @param \SKYFILLERS\SfFilecollectionGallery\Service\FileCollectionService $fileCollectionService The service
-     *
-     * @return void
-     */
-    public function injectFileCollectionService(FileCollectionService $fileCollectionService)
+    public function __construct(readonly FileCollectionService $fileCollectionService, readonly FileCollectionRepository $fileCollectionRepository, readonly FolderService $folderService)
     {
-        $this->fileCollectionService = $fileCollectionService;
+
     }
 
-    /**
-     * Inject the fileCollection repository
-     *
-     * @param \TYPO3\CMS\Core\Resource\FileCollectionRepository $fileCollectionRepository
-     *
-     * @return void
-     */
-    public function injectFileCollectionRepository(FileCollectionRepository $fileCollectionRepository)
-    {
-        $this->fileCollectionRepository = $fileCollectionRepository;
-    }
-
-    /**
-     * Inject the FolderService
-     *
-     * @param \SKYFILLERS\SfFilecollectionGallery\Service\FolderService $folderService The service
-     *
-     * @return void
-     */
-    public function injectFolderService(FolderService $folderService)
-    {
-        $this->folderService = $folderService;
-    }
 
     /**
      * Initializes the view before invoking an action method.
@@ -104,7 +55,7 @@ class GalleryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      *
      * @return void
      */
-    public function listAction($offset = 0)
+    public function listAction($offset = 0) : ResponseInterface
     {
         if ($this->settings['fileCollection'] !== '' && $this->settings['fileCollection']) {
             $collectionUids = explode(',', $this->settings['fileCollection']);
@@ -153,7 +104,7 @@ class GalleryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      *
      * @return void
      */
-    public function listFromFolderAction($offset = 0)
+    public function listFromFolderAction($offset = 0) : ResponseInterface
     {
         if ($this->settings['fileCollection'] !== '' && $this->settings['fileCollection']) {
             $cObj = $this->configurationManager->getContentObject();
@@ -193,7 +144,7 @@ class GalleryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      *
      * @return void
      */
-    public function nestedAction($offset = 0)
+    public function nestedAction($offset = 0) : ResponseInterface
     {
         if ($this->settings['fileCollection'] !== '' && $this->settings['fileCollection']) {
             $cObj = $this->configurationManager->getContentObject();
@@ -223,7 +174,7 @@ class GalleryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      *
      * @return void
      */
-    public function nestedFromFolderAction($offset = 0)
+    public function nestedFromFolderAction($offset = 0) : ResponseInterface
     {
         if ($this->settings['fileCollection'] !== '' && $this->settings['fileCollection']) {
             $cObj = $this->configurationManager->getContentObject();

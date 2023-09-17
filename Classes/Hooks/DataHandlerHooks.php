@@ -1,5 +1,5 @@
 <?php
-namespace SKYFILLERS\SfFilecollectionGallery\Hooks;
+namespace WapplerSystems\FilecollectionGallery\Hooks;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -22,7 +22,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * Idea to use Hook for flexform settings:
  * http://www.derhansen.de/2014/06/typo3-how-to-prevent-empty-flexform.html
  *
- * @author Jöran Kurschatke <info@joerankurschatke.de>
+ * @author Sven Wappler <typo3@wappler.systems>
  */
 class DataHandlerHooks
 {

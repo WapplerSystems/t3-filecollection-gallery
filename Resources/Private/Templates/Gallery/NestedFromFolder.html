@@ -1,11 +1,10 @@
-{namespace s=SKYFILLERS\SfFilecollectionGallery\ViewHelpers}
+{namespace wf=WapplerSystems\FilecollectionGallery\ViewHelpers}
 
 <f:layout name="Default"/>
 
 <f:section name="main">
     <f:if condition="{imageItems}">
         <f:widget.paginate objects="{imageItems}" as="paginatedObject" configuration="{paginationConfiguration}">
-            <div class="clear"></div>
             <f:for each="{paginatedObject}" as="object">
                 <div class="sf-filecollection-gallery-image-container">
                     <f:link.action action="listFromFolder" arguments="{galleryFolder : object.galleryFolder , galleryUID : object.galleryUID}" title="{object.properties.title}">
@@ -20,8 +19,6 @@
                     </f:if>
                 </div>
             </f:for>
-            <div class="clear"></div>
         </f:widget.paginate>
-        <div class="clear"></div>
     </f:if>
 </f:section>

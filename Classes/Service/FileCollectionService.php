@@ -1,5 +1,5 @@
 <?php
-namespace SKYFILLERS\SfFilecollectionGallery\Service;
+namespace WapplerSystems\FilecollectionGallery\Service;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -21,7 +21,7 @@ use TYPO3\CMS\Extbase\Configuration\FrontendConfigurationManager;
 /**
  * FileCollectionService
  *
- * @author Jöran Kurschatke <info@joerankurschatke.de>
+ * @author Sven Wappler <typo3@wappler.systems>
  */
 class FileCollectionService
 {

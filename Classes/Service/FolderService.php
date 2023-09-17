@@ -1,5 +1,5 @@
 <?php
-namespace SKYFILLERS\SfFilecollectionGallery\Service;
+namespace WapplerSystems\FilecollectionGallery\Service;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -17,7 +17,7 @@ namespace SKYFILLERS\SfFilecollectionGallery\Service;
 /**
  * FolderService
  *
- * @author Jöran Kurschatke <info@joerankurschatke.de>
+ * @author Sven Wappler <typo3@wappler.systems>
  */
 class FolderService
 {
