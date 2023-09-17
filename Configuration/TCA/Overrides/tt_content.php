@@ -1,12 +1,11 @@
 <?php
-defined('TYPO3_MODE') or die();
 
 /**
  * Register the plugin
  */
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-    'sf_filecollection_gallery',
-    'Pifilecollectiongallery',
+    'filecollection_gallery',
+    'Gallery',
     'FileCollection Gallery'
 );
 
@@ -17,14 +16,14 @@ $pluginSignature = 'sffilecollectiongallery_pifilecollectiongallery';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
     $pluginSignature,
-    'FILE:EXT:sf_filecollection_gallery/Configuration/FlexForms/Flexform_plugin.xml'
+    'FILE:EXT:filecollection_gallery/Configuration/FlexForms/gallery.xml'
 );
 
 /**
  * Add static TypoScript
  */
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
-    'sf_filecollection_gallery',
+    'filecollection_gallery',
     'Configuration/TypoScript',
     'FileCollection Gallery'
 );

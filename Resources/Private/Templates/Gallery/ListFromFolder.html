@@ -7,7 +7,6 @@
         <f:if condition="{settings.nestedEnableDescription}">
             <h2>{galleryFolderName}</h2>
         </f:if>
-        <f:widget.paginate objects="{imageItems}" as="paginatedObject" configuration="{paginationConfiguration}">
             <f:if condition="{showBackToGallerySelectionLink}">
                 <f:link.action action="nestedFromFolder"><f:translate key="back_to_gallery_selection" /></f:link.action>
             </f:if>
@@ -45,6 +44,5 @@
                     </f:else>
                 </f:if>
             </f:for>
-        </f:widget.paginate>
     </f:if>
 </f:section>

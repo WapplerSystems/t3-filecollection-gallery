@@ -1,0 +1,14 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  WapplerSystems\FilecollectionGallery\:
+    resource: '../Classes/*'
+
+  WapplerSystems\FilecollectionGallery\Service\FileCollectionService:
+    public: true
+
+  WapplerSystems\FilecollectionGallery\Service\FolderService:
+    public: true

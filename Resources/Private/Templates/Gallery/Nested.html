@@ -4,7 +4,6 @@
 
 <f:section name="main">
     <f:if condition="{imageItems}">
-        <f:widget.paginate objects="{imageItems}" as="paginatedObject" configuration="{paginationConfiguration}">
             <f:for each="{paginatedObject}" as="object">
                 <div class="sf-filecollection-gallery-image-container">
                     <f:link.action action="list" arguments="{galleryUID : object.galleryUID}" title="{object.properties.title}">
@@ -19,6 +18,5 @@
                     </f:if>
                 </div>
             </f:for>
-        </f:widget.paginate>
     </f:if>
 </f:section>
