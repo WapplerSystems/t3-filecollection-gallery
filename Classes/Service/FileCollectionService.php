@@ -289,7 +289,7 @@ class FileCollectionService
         $showBackToGallerySelectionLink
     ) {
         $assign = [
-            'imageItems' => $imageItems,
+            'mediaItems' => $imageItems,
             'offset' => $offset,
             'paginationConfiguration' => $paginationConfiguration,
             'settings' => $settings,

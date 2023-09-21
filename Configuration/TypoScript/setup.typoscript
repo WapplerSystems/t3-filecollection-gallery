@@ -1,46 +1,37 @@
-plugin.tx_sffilecollectiongallery {
-	view {
-		templateRootPaths {
-			0 = {$plugin.tx_sffilecollectiongallery.view.templateRootPath}
-		}
-		partialRootPaths {
-			0 = {$plugin.tx_sffilecollectiongallery.view.partialRootPath}
-		}
-		layoutRootPaths {
-			0 = {$plugin.tx_sffilecollectiongallery.view.layoutRootPath}
-		}
-		widget.TYPO3\CMS\Fluid\ViewHelpers\Widget\PaginateViewHelper {
-            templateRootPaths {
-                0 = {$plugin.tx_sffilecollectiongallery.view.widget.paginate.templateRootPath}
-            }
-        }
-	}
-	settings {
-		image {
-			width = {$plugin.tx_sffilecollectiongallery.settings.image.width}
-			height = {$plugin.tx_sffilecollectiongallery.settings.image.height}
-			lightboxWidth = {$plugin.tx_sffilecollectiongallery.settings.image.lightboxWidth}
-		}
-		lightbox = {$plugin.tx_sffilecollectiongallery.settings.lightbox}
-		enableLightbox = {$plugin.tx_sffilecollectiongallery.settings.enableLightbox}
-		cssFile = {$plugin.tx_sffilecollectiongallery.settings.cssFile}
+plugin.tx_filecollectiongallery {
+  view {
+    templateRootPaths {
+      0 = EXT:filecollection_gallery/Resources/Private/Templates/
+      10 = {$plugin.tx_filecollectiongallery.view.templateRootPath}
+    }
 
-		imagesPerPage = {$plugin.tx_sffilecollectiongallery.settings.imagesPerPage}
-		numberOfPages = {$plugin.tx_sffilecollectiongallery.settings.numberOfPages}
-		nestedImagesPerPage = {$plugin.tx_sffilecollectiongallery.settings.nestedImagesPerPage}
-		nestedNumberOfPages = {$plugin.tx_sffilecollectiongallery.settings.nestedNumberOfPages}
-	}
+    partialRootPaths {
+      0 = EXT:filecollection_gallery/Resources/Private/Partials/
+      5 = EXT:fluid_styled_content/Resources/Private/Partials/
+      10 = {$plugin.tx_filecollectiongallery.view.partialRootPath}
+    }
+
+    layoutRootPaths {
+      0 = EXT:filecollection_gallery/Resources/Private/Layouts/
+      10 = {$plugin.tx_filecollectiongallery.view.layoutRootPath}
+    }
+
+  }
+
+  settings {
+
+    media < lib.contentElement.settings.media
+
+    image {
+      width = {$plugin.tx_filecollectiongallery.settings.image.width}
+      height = {$plugin.tx_filecollectiongallery.settings.image.height}
+      lightboxWidth = {$plugin.tx_filecollectiongallery.settings.image.lightboxWidth}
+    }
+
+    itemsPerPage = {$plugin.tx_filecollectiongallery.settings.imagesPerPage}
+    numberOfPages = {$plugin.tx_filecollectiongallery.settings.numberOfPages}
+    nestedImagesPerPage = {$plugin.tx_filecollectiongallery.settings.nestedImagesPerPage}
+    nestedNumberOfPages = {$plugin.tx_filecollectiongallery.settings.nestedNumberOfPages}
+  }
 }
 
-lib.sffilecollectiongallery = USER
-lib.sffilecollectiongallery {
-	userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-	extensionName = SfFilecollectionGallery
-	pluginName = Pifilecollectiongallery
-	vendorName = SKYFILLERS
-
-	settings < plugin.tx_sffilecollectiongallery.settings
-
-}
-
-tt_content.list.20.sffilecollectiongallery_pifilecollectiongallery < lib.sffilecollectiongallery

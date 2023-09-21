@@ -1,4 +1,5 @@
 <?php
+
 namespace WapplerSystems\FilecollectionGallery\Controller;
 
 /*
@@ -16,7 +17,9 @@ namespace WapplerSystems\FilecollectionGallery\Controller;
 
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Resource\Collection\AbstractFileCollection;
+use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
 use TYPO3\CMS\Core\Resource\FileCollectionRepository;
+use TYPO3\CMS\Core\Utility\DebugUtility;
 use WapplerSystems\FilecollectionGallery\Service\FileCollectionService;
 use WapplerSystems\FilecollectionGallery\Service\FolderService;
 
@@ -43,7 +46,7 @@ class GalleryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     protected function initializeView($view)
     {
-        $view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
+        $view->assign('contentObjectData', $this->request->getAttribute('currentContentObject')->data);
     }
 
     /**
@@ -51,48 +54,48 @@ class GalleryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      *
      * @param int $offset The offset
      *
-     * @return void
+     * @return ResponseInterface
+     * @throws ResourceDoesNotExistException
      */
-    public function listAction($offset = 0) : ResponseInterface
+    public function listAction($offset = 0): ResponseInterface
     {
-        if ($this->settings['fileCollection'] !== '' && $this->settings['fileCollection']) {
-            $collectionUids = explode(',', $this->settings['fileCollection']);
-            $cObj = $this->configurationManager->getContentObject();
-            $currentUid = $cObj->data['uid'];
-            $columnPosition = $cObj->data['colPos'];
-            /** @var AbstractFileCollection $collection */
-            $collection = null;
 
-            $showBackToGallerySelectionLink = false;
-            //if a special gallery is requested
-            if ($this->request->hasArgument('galleryUID')) {
-                $gallery = [$this->request->getArgument('galleryUID')];
-                $imageItems = $this->fileCollectionService->getFileObjectsFromCollection($gallery);
-                $collection = $this->fileCollectionRepository->findByUid($this->request->getArgument('galleryUID'));
-                $showBackToGallerySelectionLink = true;
-            } else {
-                $imageItems = $this->fileCollectionService->getFileObjectsFromCollection($collectionUids);
-            }
+        $collectionUids = explode(',', $this->settings['fileCollection']);
+        $cObj = $this->request->getAttribute('currentContentObject');
+        $currentUid = $cObj->data['uid'];
+        $columnPosition = $cObj->data['colPos'];
+        /** @var AbstractFileCollection $collection */
+        $collection = null;
 
-            if ($collection === null && count($collectionUids) === 1) {
-                $collection = $this->fileCollectionRepository->findByUid($collectionUids[0]);
-            }
+        $showBackToGallerySelectionLink = false;
 
-            if ($collection !== null) {
-                $collection->loadContents();
-                $this->view->assign('galleryListName', $collection->getTitle());
-            }
-
-            $this->view->assignMultiple($this->fileCollectionService->buildArrayForAssignToView(
-                $imageItems,
-                $offset,
-                $this->fileCollectionService->buildPaginationArray($this->settings),
-                $this->settings,
-                $currentUid,
-                $columnPosition,
-                $showBackToGallerySelectionLink
-            ));
+        if ($this->request->hasArgument('galleryUID')) {
+            $gallery = [$this->request->getArgument('galleryUID')];
+            $mediaItems = $this->fileCollectionService->getFileObjectsFromCollection($gallery);
+            $collection = $this->fileCollectionRepository->findByUid($this->request->getArgument('galleryUID'));
+            $showBackToGallerySelectionLink = true;
+        } else {
+            $mediaItems = $this->fileCollectionService->getFileObjectsFromCollection($collectionUids);
         }
+
+        if ($collection === null && count($collectionUids) === 1) {
+            $collection = $this->fileCollectionRepository->findByUid($collectionUids[0]);
+        }
+
+        if ($collection !== null) {
+            $collection->loadContents();
+            $this->view->assign('galleryListName', $collection->getTitle());
+        }
+
+        $this->view->assignMultiple($this->fileCollectionService->buildArrayForAssignToView(
+            $mediaItems,
+            $offset,
+            $this->fileCollectionService->buildPaginationArray($this->settings),
+            $this->settings,
+            $currentUid,
+            $columnPosition,
+            $showBackToGallerySelectionLink
+        ));
 
         return $this->htmlResponse();
     }
@@ -102,9 +105,9 @@ class GalleryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      *
      * @param int $offset The offset
      *
-     * @return void
+     * @return ResponseInterface
      */
-    public function listFromFolderAction($offset = 0) : ResponseInterface
+    public function listFromFolderAction($offset = 0): ResponseInterface
     {
         if ($this->settings['fileCollection'] !== '' && $this->settings['fileCollection']) {
             $cObj = $this->configurationManager->getContentObject();
@@ -112,21 +115,21 @@ class GalleryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $columnPosition = $cObj->data['colPos'];
 
             $showBackToGallerySelectionLink = false;
-            $imageItems = [];
+            $mediaItems = [];
             //if a special gallery is requested
             if ($this->request->hasArgument('galleryFolder') && $this->request->hasArgument('galleryUID')) {
                 $galleryFolderHash = $this->request->getArgument('galleryFolder');
                 $galleryUid = [$this->request->getArgument('galleryUID')];
-                $imageItems = $this->fileCollectionService->getGalleryItemsByFolderHash($galleryUid, $galleryFolderHash);
+                $mediaItems = $this->fileCollectionService->getGalleryItemsByFolderHash($galleryUid, $galleryFolderHash);
                 $showBackToGallerySelectionLink = true;
             }
 
-            if ($imageItems) {
-                $this->view->assign('galleryFolderName', $this->folderService->getFolderByFile($imageItems[0])->getName());
+            if ($mediaItems) {
+                $this->view->assign('galleryFolderName', $this->folderService->getFolderByFile($mediaItems[0])->getName());
             }
 
             $this->view->assignMultiple($this->fileCollectionService->buildArrayForAssignToView(
-                $imageItems,
+                $mediaItems,
                 $offset,
                 $this->fileCollectionService->buildPaginationArray($this->settings),
                 $this->settings,
@@ -146,7 +149,7 @@ class GalleryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      *
      * @return void
      */
-    public function nestedAction($offset = 0) : ResponseInterface
+    public function nestedAction($offset = 0): ResponseInterface
     {
         if ($this->settings['fileCollection'] !== '' && $this->settings['fileCollection']) {
             $cObj = $this->configurationManager->getContentObject();
@@ -155,10 +158,10 @@ class GalleryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
             $collectionUids = explode(',', $this->settings['fileCollection']);
 
-            $imageItems = $this->fileCollectionService->getGalleryCoversFromCollections($collectionUids);
+            $mediaItems = $this->fileCollectionService->getGalleryCoversFromCollections($collectionUids);
 
             $this->view->assignMultiple($this->fileCollectionService->buildArrayForAssignToView(
-                $imageItems,
+                $mediaItems,
                 $offset,
                 $this->fileCollectionService->buildPaginationArrayForNested($this->settings),
                 $this->settings,
@@ -178,7 +181,7 @@ class GalleryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      *
      * @return void
      */
-    public function nestedFromFolderAction($offset = 0) : ResponseInterface
+    public function nestedFromFolderAction($offset = 0): ResponseInterface
     {
         if ($this->settings['fileCollection'] !== '' && $this->settings['fileCollection']) {
             $cObj = $this->configurationManager->getContentObject();
@@ -187,10 +190,10 @@ class GalleryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
             $collectionUids = explode(',', $this->settings['fileCollection']);
 
-            $imageItems = $this->fileCollectionService->getGalleryCoversFromNestedFoldersCollection($collectionUids);
+            $mediaItems = $this->fileCollectionService->getGalleryCoversFromNestedFoldersCollection($collectionUids);
 
             $this->view->assignMultiple($this->fileCollectionService->buildArrayForAssignToView(
-                $imageItems,
+                $mediaItems,
                 $offset,
                 $this->fileCollectionService->buildPaginationArrayForNested($this->settings),
                 $this->settings,
