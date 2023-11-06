@@ -1,26 +1,31 @@
-{namespace wf=WapplerSystems\FilecollectionGallery\ViewHelpers}
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+      xmlns:wf="http://typo3.org/ns/WapplerSystems/FilecollectionGallery/ViewHelpers"
+      data-namespace-typo3-fluid="true">
 
 <f:layout name="Default"/>
 
 <f:section name="main">
-    <f:debug>{_all}</f:debug>
 
     <f:if condition="{mediaItems}">
         <f:if condition="{settings.nestedEnableDescription}">
             <h2>{galleryListName}</h2>
         </f:if>
         <f:if condition="{showBackToGallerySelectionLink}">
-            <f:link.action action="nested"><f:translate key="back_to_gallery_selection" /></f:link.action>
+            <f:link.action action="nested">
+                <f:translate key="back_to_gallery_selection"/>
+            </f:link.action>
         </f:if>
-
 
         <div class="fc-gallery{f:if(condition: data.imageborder, then: ' ce-border')}" data-ce-columns="{gallery.count.columns}" data-ce-images="{gallery.count.files}">
             <f:for each="{mediaItems}" as="object">
                 <div class="ce-column">
-                    <f:render partial="Media/Type" arguments="{file: object, data: data, settings: settings}" />
+                    <f:alias map="{data:{image_zoom:1,uid:object.uid}}">
+                        <f:render partial="Media/Type" arguments="{file: object, data: data, settings: settings}"/>
+                    </f:alias>
                 </div>
             </f:for>
         </div>
 
     </f:if>
 </f:section>
+</html>
