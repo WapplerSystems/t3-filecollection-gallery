@@ -2,26 +2,14 @@
 
 namespace WapplerSystems\FilecollectionGallery\Controller;
 
-/*
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
- */
 
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Resource\Collection\AbstractFileCollection;
+use TYPO3\CMS\Core\Resource\Exception\InsufficientFolderAccessPermissionsException;
 use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
 use TYPO3\CMS\Core\Resource\FileCollectionRepository;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\View\ViewResolverInterface;
-use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
-use TYPO3Fluid\Fluid\View\AbstractTemplateView;
 use WapplerSystems\FilecollectionGallery\Service\FileCollectionService;
 use WapplerSystems\FilecollectionGallery\Service\FolderService;
 
@@ -30,11 +18,15 @@ use WapplerSystems\FilecollectionGallery\Service\FolderService;
  *
  * @author Sven Wappler <typo3@wappler.systems>
  */
-class GalleryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class GalleryController extends ActionController
 {
 
 
-    public function __construct(readonly FileCollectionService $fileCollectionService, readonly FileCollectionRepository $fileCollectionRepository, readonly FolderService $folderService, readonly ViewResolverInterface $viewResolver)
+    public function __construct(
+        readonly FileCollectionService $fileCollectionService,
+        readonly FileCollectionRepository $fileCollectionRepository,
+        readonly FolderService $folderService,
+        readonly ViewResolverInterface $viewResolver)
     {
 
     }
@@ -59,7 +51,7 @@ class GalleryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @return ResponseInterface
      * @throws ResourceDoesNotExistException
      */
-    public function listAction($offset = 0): ResponseInterface
+    public function listAction(int $offset = 0): ResponseInterface
     {
 
         $collectionUids = (trim($this->settings['fileCollection']) !== '') ? explode(',', $this->settings['fileCollection']) : [];
@@ -80,11 +72,11 @@ class GalleryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
         if ($this->request->hasArgument('galleryUID')) {
             $gallery = [$this->request->getArgument('galleryUID')];
-            $mediaItems = $this->fileCollectionService->getFileObjectsFromCollection($gallery);
+            $mediaItems = $this->fileCollectionService->getFileObjectsFromCollection($gallery, $this->settings['order']);
             $collection = $this->fileCollectionRepository->findByUid($this->request->getArgument('galleryUID'));
             $showBackToGallerySelectionLink = true;
         } else {
-            $mediaItems = $this->fileCollectionService->getFileObjectsFromCollection($collectionUids);
+            $mediaItems = $this->fileCollectionService->getFileObjectsFromCollection($collectionUids, $this->settings['order']);
         }
 
         if ($collection === null && count($collectionUids) === 1) {
@@ -112,6 +104,7 @@ class GalleryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @param int $offset The offset
      *
      * @return ResponseInterface
+     * @throws ResourceDoesNotExistException|InsufficientFolderAccessPermissionsException
      */
     public function listFromFolderAction($offset = 0): ResponseInterface
     {
@@ -153,7 +146,7 @@ class GalleryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      *
      * @param int $offset The offset
      *
-     * @return void
+     * @return ResponseInterface
      */
     public function nestedAction($offset = 0): ResponseInterface
     {
@@ -185,7 +178,7 @@ class GalleryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      *
      * @param int $offset The offset
      *
-     * @return void
+     * @return ResponseInterface
      */
     public function nestedFromFolderAction($offset = 0): ResponseInterface
     {
@@ -213,30 +206,14 @@ class GalleryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     }
 
 
-
     protected function htmlErrorResponse(?string $errorLabel = null): ResponseInterface
     {
-        $view = $this->viewResolver->resolve(
-            $this->request->getControllerObjectName(),
-            $this->request->getControllerActionName(),
-            $this->request->getFormat()
-        );
-        $this->setViewConfiguration($view);
-        if ($view instanceof AbstractTemplateView) {
-            $renderingContext = $view->getRenderingContext();
-            if ($renderingContext instanceof RenderingContext) {
-                $renderingContext->setRequest($this->request);
-            }
-            $renderingContext->setControllerAction('error');
-            $templatePaths = $view->getRenderingContext()->getTemplatePaths();
-            $templatePaths->fillDefaultsByPackageName($this->request->getControllerExtensionKey());
-            $templatePaths->setFormat($this->request->getFormat());
-        }
-        $view->assign('errorLabel', $errorLabel);
+        $this->view->setTemplatePathAndFilename('EXT:filecollection_gallery/Resources/Private/Templates/Gallery/Error.html');
+        $this->view->assign('errorLabel', $errorLabel);
 
         return $this->responseFactory->createResponse()
             ->withHeader('Content-Type', 'text/html; charset=utf-8')
             ->withStatus(500)
-            ->withBody($this->streamFactory->createStream($view->render()));
+            ->withBody($this->streamFactory->createStream($this->view->render()));
     }
 }

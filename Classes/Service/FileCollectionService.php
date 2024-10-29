@@ -2,19 +2,9 @@
 
 namespace WapplerSystems\FilecollectionGallery\Service;
 
-/*
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
- */
 
+use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
+use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\FileCollectionRepository;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Extbase\Configuration\FrontendConfigurationManager;
@@ -27,52 +17,24 @@ use TYPO3\CMS\Extbase\Configuration\FrontendConfigurationManager;
 class FileCollectionService
 {
 
-    /**
-     * Collection Repository
-     *
-     * @var \TYPO3\CMS\Core\Resource\FileCollectionRepository
-     */
-    protected $fileCollectionRepository;
 
-    /**
-     * The Frontend Configuration
-     *
-     * @var \TYPO3\CMS\Extbase\Configuration\FrontendConfigurationManager
-     */
-    protected $frontendConfigurationManager;
-
-    /**
-     * Inject the fileCollection repository
-     *
-     * @param \TYPO3\CMS\Core\Resource\FileCollectionRepository $fileCollectionRepository
-     *
-     * @return void
-     */
-    public function injectFileCollectionRepository(FileCollectionRepository $fileCollectionRepository)
+    public function __construct(
+        readonly FileCollectionRepository $fileCollectionRepository,
+        readonly FrontendConfigurationManager $frontendConfigurationManager)
     {
-        $this->fileCollectionRepository = $fileCollectionRepository;
+
     }
 
-    /**
-     * Inject the Frontend Configuration Manager.
-     *
-     * @param \TYPO3\CMS\Extbase\Configuration\FrontendConfigurationManager $frontendConfigurationManager
-     *
-     * @return void
-     */
-    public function injectFrontendConfigurationManager(FrontendConfigurationManager $frontendConfigurationManager)
-    {
-        $this->frontendConfigurationManager = $frontendConfigurationManager;
-    }
 
     /**
      * Returns an array of file objects for the given UIDs of fileCollections
      *
      * @param array $collectionUids The uids
-     *
+     * @param string $sortingDirection
      * @return array
+     * @throws ResourceDoesNotExistException
      */
-    public function getFileObjectsFromCollection(array $collectionUids)
+    public function getFileObjectsFromCollection(array $collectionUids, string $sortingDirection = 'asc'): array
     {
         $imageItems = [];
         foreach ($collectionUids as $collectionUid) {
@@ -87,7 +49,7 @@ class FileCollectionService
                     'title' => $collection->getTitle(),
                     'description' => $collection->getDescription()
                 ];
-                if ($item instanceof \TYPO3\CMS\Core\Resource\FileReference) {
+                if ($item instanceof FileReference) {
                     $file = $this->getFileObjectFromFileReference($item);
                     $file->updateProperties(['collection' => $collectionProperties]);
                     $imageItems[] = $file;
@@ -97,7 +59,7 @@ class FileCollectionService
                 }
             }
         }
-        return $this->sortFileObjects($imageItems);
+        return $this->sortFileObjects($imageItems, $sortingDirection);
     }
 
 
@@ -107,29 +69,34 @@ class FileCollectionService
      *
      * @param $collectionUids
      * @param $galleryFolderHash
+     * @param string $sortingDirection
      * @return array
+     * @throws ResourceDoesNotExistException
      */
-    public function getGalleryItemsByFolderHash($collectionUids, $galleryFolderHash)
+    public function getGalleryItemsByFolderHash($collectionUids, $galleryFolderHash, string $sortingDirection = 'asc'): array
     {
         $imageItems = [];
 
         // Load all images from collection
         foreach ($collectionUids as $collectionUid) {
             $collection = $this->fileCollectionRepository->findByUid($collectionUid);
+            if ($collection === null) {
+                continue;
+            }
             $collection->loadContents();
             $allItems = [];
 
             // Load all image and sort them by folder_hash
             foreach ($collection->getItems() as $item) {
                 if ($item->getProperty('folder_hash') === $galleryFolderHash) {
-                    if (get_class($item) === 'TYPO3\CMS\Core\Resource\FileReference') {
-                        array_push($allItems, $this->getFileObjectFromFileReference($item));
+                    if ($item instanceof FileReference) {
+                        $allItems[] = $this->getFileObjectFromFileReference($item);
                     } else {
-                        array_push($allItems, $item);
+                        $allItems[] = $item;
                     }
                 }
             }
-            $imageItems = $this->sortFileObjects($allItems);
+            $imageItems = $this->sortFileObjects($allItems, $sortingDirection);
         }
         return $imageItems;
     }
@@ -140,7 +107,7 @@ class FileCollectionService
      * @param array $settings The current settings
      * @return array
      */
-    public function buildPaginationArray($settings)
+    public function buildPaginationArray($settings): array
     {
         $paginationArray = [];
         if (!empty($settings)) {
@@ -160,7 +127,7 @@ class FileCollectionService
      * @param array $settings The current settings
      * @return array
      */
-    public function buildPaginationArrayForNested($settings)
+    public function buildPaginationArrayForNested(array $settings): array
     {
         $paginationArray = [];
         if (!empty($settings)) {
@@ -175,7 +142,7 @@ class FileCollectionService
     }
 
 
-    protected function sortFileObjectsByName($items, int $direction)
+    protected function sortFileObjectsByName($items, int $direction): void
     {
         $lowercaseNames = array_map(function ($n) {
             return strtolower($n->getName());
@@ -184,7 +151,7 @@ class FileCollectionService
         array_multisort($lowercaseNames, $direction, SORT_STRING, $items);
     }
 
-    protected function sortFileObjectsByDate($items, int $direction)
+    protected function sortFileObjectsByDate($items, int $direction): void
     {
         $dates = array_map(function ($n) {
             return strtolower($n->getCreationTime());
@@ -193,7 +160,7 @@ class FileCollectionService
         array_multisort($dates, $direction, SORT_NUMERIC, $items);
     }
 
-    protected function sortFileObjectsByFolderHash(&$items, int $direction)
+    protected function sortFileObjectsByFolderHash(&$items, int $direction): void
     {
         $folderhashes = array_map(function ($n) {
             return strtolower($n->getProperty('folder_hash'));
@@ -209,10 +176,9 @@ class FileCollectionService
      *
      * @return array
      */
-    protected function sortFileObjects($imageItems)
+    protected function sortFileObjects(array $imageItems, string $sortingDirection = 'asc'): array
     {
-        $configuration = $this->frontendConfigurationManager->getConfiguration();
-        switch ($configuration['settings']['order'] ?? '') {
+        switch ($sortingDirection) {
             case 'desc':
                 $this->sortFileObjectsByName($imageItems, SORT_DESC);
                 break;
@@ -236,12 +202,12 @@ class FileCollectionService
      * Returns an FileObject from a given FileReference
      *
      */
-    protected function getFileObjectFromFileReference(FileReference $item): \TYPO3\CMS\Core\Resource\File
+    protected function getFileObjectFromFileReference(FileReference $item): File
     {
         /**
          * The item to return
          *
-         * @var \TYPO3\CMS\Core\Resource\File $returnItem
+         * @var File $returnItem
          */
         $returnItem = $item->getOriginalFile();
         $returnItem->updateProperties($item->getProperties());

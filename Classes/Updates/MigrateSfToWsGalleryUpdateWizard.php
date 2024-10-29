@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace WapplerSystems\FilecollectionGallery\Updates;
 
+use Doctrine\DBAL\Exception;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Attribute\UpgradeWizard;
@@ -48,6 +49,7 @@ class MigrateSfToWsGalleryUpdateWizard implements UpgradeWizardInterface, Confir
      * Checks if an update is needed
      *
      * @return bool Whether an update is needed (true) or not (false)
+     * @throws Exception
      */
     public function updateNecessary(): bool
     {

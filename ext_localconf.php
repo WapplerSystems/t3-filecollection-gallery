@@ -14,8 +14,3 @@ ExtensionUtility::configurePlugin(
     [],
     ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
 );
-
-
-ExtensionManagementUtility::addPageTSConfig(
-    "@import 'EXT:filecollection_gallery/Configuration/TsConfig/ContentElementWizard.tsconfig'"
-);
