@@ -5,7 +5,7 @@
 <f:section name="main">
     <f:if condition="{imageItems}">
             <f:for each="{paginatedObject}" as="object">
-                <div class="sf-filecollection-gallery-image-container">
+                <div class="filecollection_gallery-image-container">
                     <f:link.action action="listFromFolder" arguments="{galleryFolder: object.galleryFolder, galleryUID: object.galleryUID}" title="{object.properties.title}">
                         <f:image image="{object}" width="{settings.image.width}" height="{settings.image.height}"
                                  alt="{object.properties.alternative}"

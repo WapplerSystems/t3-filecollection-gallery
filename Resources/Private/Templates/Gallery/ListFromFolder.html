@@ -17,7 +17,7 @@
             <f:for each="{paginatedObject}" as="object">
                 <f:if condition="{settings.enableLightbox}">
                     <f:then>
-                        <div class="sf-filecollection-gallery-image-container">
+                        <div class="filecollection_gallery-image-container">
                             <a rel="{settings.lightbox}" class="{settings.lightbox}" title="{object.properties.title}"
                                href="{f:uri.image(src:'{object.uid}', treatIdAsReference:0, maxWidth:'{settings.image.lightboxWidth}')}">
                                 <f:image image="{object}" width="{settings.image.width}" height="{settings.image.height}"
@@ -32,7 +32,7 @@
                         </div>
                     </f:then>
                     <f:else>
-                        <div class="sf-filecollection-gallery-image-container">
+                        <div class="filecollection_gallery-image-container">
                             <f:image image="{object}" width="{settings.image.width}" height="{settings.image.height}" alt="{object.properties.alternative}"
                                      title="{object.properties.title}"/>
                             <f:if condition="{object.properties.description}">
