@@ -53,9 +53,8 @@ class GalleryController extends ActionController
      */
     public function listAction(int $offset = 0): ResponseInterface
     {
-
-        $collectionUids = (trim($this->settings['fileCollection']) !== '') ? explode(',', $this->settings['fileCollection']) : [];
-        if (isset($this->settings['inlineFileCollection'])) {
+        $collectionUids = (trim($this->settings['fileCollection'] ?? '') !== '') ? explode(',', $this->settings['fileCollection']) : [];
+        if (($this->settings['inlineFileCollection'] ?? '') !== '') {
             $collectionUids = array_merge($collectionUids, explode(',', $this->settings['inlineFileCollection']));
         }
         $cObj = $this->request->getAttribute('currentContentObject');
@@ -72,11 +71,11 @@ class GalleryController extends ActionController
 
         if ($this->request->hasArgument('galleryUID')) {
             $gallery = [$this->request->getArgument('galleryUID')];
-            $mediaItems = $this->fileCollectionService->getFileObjectsFromCollection($gallery, $this->settings['order']);
+            $mediaItems = $this->fileCollectionService->getFileObjectsFromCollection($gallery, $this->settings['order'] ?? 'asc');
             $collection = $this->fileCollectionRepository->findByUid($this->request->getArgument('galleryUID'));
             $showBackToGallerySelectionLink = true;
         } else {
-            $mediaItems = $this->fileCollectionService->getFileObjectsFromCollection($collectionUids, $this->settings['order']);
+            $mediaItems = $this->fileCollectionService->getFileObjectsFromCollection($collectionUids, $this->settings['order'] ?? 'asc');
         }
 
         if ($collection === null && count($collectionUids) === 1) {
