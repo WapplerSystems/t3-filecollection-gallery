@@ -15,6 +15,7 @@ namespace WapplerSystems\FilecollectionGallery\Service;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
 use TYPO3\CMS\Core\Resource\FileCollectionRepository;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Extbase\Configuration\FrontendConfigurationManager;
@@ -27,42 +28,9 @@ use TYPO3\CMS\Extbase\Configuration\FrontendConfigurationManager;
 class FileCollectionService
 {
 
-    /**
-     * Collection Repository
-     *
-     * @var \TYPO3\CMS\Core\Resource\FileCollectionRepository
-     */
-    protected $fileCollectionRepository;
-
-    /**
-     * The Frontend Configuration
-     *
-     * @var \TYPO3\CMS\Extbase\Configuration\FrontendConfigurationManager
-     */
-    protected $frontendConfigurationManager;
-
-    /**
-     * Inject the fileCollection repository
-     *
-     * @param \TYPO3\CMS\Core\Resource\FileCollectionRepository $fileCollectionRepository
-     *
-     * @return void
-     */
-    public function injectFileCollectionRepository(FileCollectionRepository $fileCollectionRepository)
+    public function __construct(readonly FileCollectionRepository $fileCollectionRepository, readonly FrontendConfigurationManager $frontendConfigurationManager)
     {
-        $this->fileCollectionRepository = $fileCollectionRepository;
-    }
 
-    /**
-     * Inject the Frontend Configuration Manager.
-     *
-     * @param \TYPO3\CMS\Extbase\Configuration\FrontendConfigurationManager $frontendConfigurationManager
-     *
-     * @return void
-     */
-    public function injectFrontendConfigurationManager(FrontendConfigurationManager $frontendConfigurationManager)
-    {
-        $this->frontendConfigurationManager = $frontendConfigurationManager;
     }
 
     /**
@@ -71,11 +39,15 @@ class FileCollectionService
      * @param array $collectionUids The uids
      *
      * @return array
+     * @throws ResourceDoesNotExistException
      */
     public function getFileObjectsFromCollection(array $collectionUids)
     {
         $imageItems = [];
         foreach ($collectionUids as $collectionUid) {
+            if ($collectionUid === '') {
+                continue;
+            }
             $collection = $this->fileCollectionRepository->findByUid($collectionUid);
             if ($collection === null) {
                 continue;
