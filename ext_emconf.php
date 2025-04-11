@@ -1,6 +1,6 @@
 <?php
 
-$EM_CONF['filecollection_gallery'] = [
+$EM_CONF[$_EXTKEY] = [
     'title' => 'FileCollection Gallery',
     'description' => 'Simple FileCollection Gallery with mobile and desktop view',
     'category' => 'plugin',
@@ -12,7 +12,7 @@ $EM_CONF['filecollection_gallery'] = [
     'uploadfolder' => '0',
     'createDirs' => '',
     'clearCacheOnLoad' => 0,
-    'version' => '13.0.2',
+    'version' => '13.0.3',
     'constraints' => [
         'depends' => [
             'typo3' => '13.4.0 - 13.4.99',
