@@ -13,7 +13,7 @@ plugin.tx_filecollectiongallery {
     mobile {
 
       image {
-        # cat=plugin.tx_filecollectiongallery/mobile/a; type=string; label=LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.width
+        # cat=plugin.tx_filecollectiongallery/mobile/a; type=int; label=LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.width
         maxWidth = 700
       }
 

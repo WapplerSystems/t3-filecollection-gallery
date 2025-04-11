@@ -24,24 +24,24 @@ plugin.tx_filecollectiongallery {
 
     mobile {
       image {
-        maxWidth = {$plugin.tx_filecollectiongallery.settings.mobile.image.maxWidth}
+        maxWidth = {$plugin.tx_filecollectiongallery.settings.mobile.image.maxWidth ?? $filecollectiongallery.mobile.image.maxWidth}
       }
     }
 
     desktop {
       preview {
         image {
-          width = {$plugin.tx_filecollectiongallery.settings.desktop.preview.image.width}
-          height = {$plugin.tx_filecollectiongallery.settings.desktop.preview.image.height}
+          width = {$plugin.tx_filecollectiongallery.settings.desktop.preview.image.width ?? $filecollectiongallery.desktop.preview.image.width}
+          height = {$plugin.tx_filecollectiongallery.settings.desktop.preview.image.height ?? $filecollectiongallery.desktop.preview.image.height}
         }
       }
     }
 
-    downloadButton = {$plugin.tx_filecollectiongallery.settings.downloadButton}
+    downloadButton = {$plugin.tx_filecollectiongallery.settings.downloadButton ?? $filecollectiongallery.downloadButton}
 
     lightbox {
-      maxWidth = {$plugin.tx_filecollectiongallery.settings.lightbox.maxWidth}
-      maxHeight = {$plugin.tx_filecollectiongallery.settings.lightbox.maxHeight}
+      maxWidth = {$plugin.tx_filecollectiongallery.settings.lightbox.maxWidth  ?? $filecollectiongallery.lightbox.maxWidth}
+      maxHeight = {$plugin.tx_filecollectiongallery.settings.lightbox.maxHeight  ?? $filecollectiongallery.lightbox.maxHeight}
     }
 
   }

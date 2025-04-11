@@ -1,0 +1,63 @@
+
+categories:
+  filecollectionGallery:
+    label: 'File Collection Gallery'
+  filecollectionGallery.templates:
+    parent: filecollectionGallery
+    label: 'Templates'
+  filecollectionGallery.mobile:
+    parent: filecollectionGallery
+    label: 'Mobile settings'
+  filecollectionGallery.desktop:
+    parent: filecollectionGallery
+    label: 'Desktop settings'
+  filecollectionGallery.lightbox:
+    parent: filecollectionGallery
+    label: 'Lightbox settings'
+
+settings:
+  filecollectiongallery.view.templateRootPath:
+    default: 'EXT:filecollection_gallery/Resources/Private/Templates/'
+    type: string
+    category: filecollectionGallery.templates
+    label: 'Template Root Path'
+  filecollectiongallery.view.partialRootPath:
+    default: 'EXT:filecollection_gallery/Resources/Private/Partials/'
+    type: string
+    category: filecollectionGallery.templates
+    label: 'Partial Root Path'
+  filecollectiongallery.view.layoutRootPath:
+    default: 'EXT:filecollection_gallery/Resources/Private/Layouts/'
+    type: string
+    category: filecollectionGallery.templates
+    label: 'Layout Root Path'
+  filecollectiongallery.mobile.image.maxWidth:
+    default: 700
+    type: int
+    category: filecollectionGallery.mobile
+    label: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.width'
+  filecollectiongallery.desktop.preview.image.width:
+    default: 700c
+    type: string
+    category: filecollectionGallery.desktop
+    label: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.width'
+  filecollectiongallery.desktop.preview.image.height:
+    default: 700c
+    type: string
+    category: filecollectionGallery.desktop
+    label: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.height'
+  filecollectiongallery.downloadButton:
+    default: 1
+    type: bool
+    category: filecollectionGallery
+    label: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.download_button'
+  filecollectiongallery.lightbox.maxWidth:
+    default: 2000
+    type: int
+    category: filecollectionGallery.lightbox
+    label: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.download_button'
+  filecollectiongallery.lightbox.maxHeight:
+    default: 1000
+    type: int
+    category: filecollectionGallery.lightbox
+    label: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.maxHeight'
