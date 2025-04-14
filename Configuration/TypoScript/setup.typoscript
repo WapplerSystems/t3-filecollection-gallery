@@ -2,18 +2,18 @@ plugin.tx_filecollectiongallery {
   view {
     templateRootPaths {
       0 = EXT:filecollection_gallery/Resources/Private/Templates/
-      10 = {$plugin.tx_filecollectiongallery.view.templateRootPath}
+      10 = {$plugin.tx_filecollectiongallery.view.templateRootPath ?? $filecollectiongallery.view.templateRootPath}
     }
 
     partialRootPaths {
       0 = EXT:filecollection_gallery/Resources/Private/Partials/
       5 = EXT:fluid_styled_content/Resources/Private/Partials/
-      10 = {$plugin.tx_filecollectiongallery.view.partialRootPath}
+      10 = {$plugin.tx_filecollectiongallery.view.partialRootPath ?? $filecollectiongallery.view.partialRootPath}
     }
 
     layoutRootPaths {
       0 = EXT:filecollection_gallery/Resources/Private/Layouts/
-      10 = {$plugin.tx_filecollectiongallery.view.layoutRootPath}
+      10 = {$plugin.tx_filecollectiongallery.view.layoutRootPath ?? $filecollectiongallery.view.layoutRootPath}
     }
 
   }
