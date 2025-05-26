@@ -55,7 +55,7 @@ settings:
     default: 2000
     type: int
     category: filecollectionGallery.lightbox
-    label: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.download_button'
+    label: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.maxWidth'
   filecollectiongallery.lightbox.maxHeight:
     default: 1000
     type: int
