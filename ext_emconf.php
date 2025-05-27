@@ -1,6 +1,6 @@
 <?php
 
-$EM_CONF['filecollection_gallery'] = [
+$EM_CONF[$_EXTKEY] = [
     'title' => 'FileCollection Gallery',
     'description' => 'Simple FileCollection Gallery with mobile and desktop view',
     'category' => 'plugin',

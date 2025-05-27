@@ -29,8 +29,8 @@
                             <f:image class="fc-gallery__item__thumbnail" image="{mediaItem}" maxWidth="{settings.mobile.image.maxWidth}" />
 
                             <f:if condition="{settings.downloadButton}">
-                                <f:link.file class="fc-gallery__download-btn" download="1" file="{mediaItem}">
-                                    <f:image loading="lazy" title="{f:translate(key: 'LLL:EXT:filecollection_gallery/Resources/Languages/locallang.xlf:btn.download')}" src="EXT:filecollection_gallery/Resources/Public/Images/download-solid.svg" />
+                                <f:link.file aria-label="{f:translate(key: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang.xlf:btn.download_image', arguments: '{0:mediaItem.properties.title}')}" class="fc-gallery__download-btn" download="1" file="{mediaItem}">
+                                    <f:image alt="{f:translate(key: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang.xlf:image.download.alt')}" loading="lazy" title="{f:translate(key: 'LLL:EXT:filecollection_gallery/Resources/Private/Languages/locallang.xlf:btn.download')}" src="EXT:filecollection_gallery/Resources/Public/Images/download-solid.svg" />
                                 </f:link.file>
                             </f:if>
 
@@ -45,7 +45,7 @@
 
 
         </div>
-        <div class="d-md-block fc-gallery--desktop">
+        <div class="d-md-block fc-gallery--desktop" style="--gallery-item-width: {settings.desktop.preview.image.width -> f:format.number(decimals: 0)}px">
             <div class="fc-gallery-grid">
                 <f:for each="{mediaItems}" as="mediaItem">
 
@@ -59,8 +59,8 @@
                                 </div>
                             </a>
                             <f:if condition="{settings.downloadButton}">
-                                <f:link.file title="{f:translate(key: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang.xlf:btn.download')}" class="fc-gallery__download-btn" download="1" file="{mediaItem}">
-                                    <f:image title="{f:translate(key: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang.xlf:btn.download')}" src="EXT:filecollection_gallery/Resources/Public/Images/download-solid.svg" />
+                                <f:link.file aria-label="{f:translate(key: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang.xlf:btn.download_image', arguments: '{0:mediaItem.properties.title}')}" title="{f:translate(key: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang.xlf:btn.download')}" class="fc-gallery__download-btn" download="1" file="{mediaItem}">
+                                    <f:image alt="{f:translate(key: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang.xlf:image.download.alt')}" title="{f:translate(key: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang.xlf:btn.download')}" src="EXT:filecollection_gallery/Resources/Public/Images/download-solid.svg" />
                                 </f:link.file>
                             </f:if>
 

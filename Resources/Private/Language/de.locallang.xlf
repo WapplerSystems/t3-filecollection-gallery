@@ -6,9 +6,11 @@
 		<body>
 			<trans-unit id="pagination_first">
 				<source>First</source>
+				<target>Erste</target>
 			</trans-unit>
 			<trans-unit id="pagination_last">
 				<source>Last</source>
+				<target>Letzte</target>
 			</trans-unit>
 			<trans-unit id="pagination_previous">
 				<source>&lt;</source>
@@ -18,6 +20,7 @@
 			</trans-unit>
 			<trans-unit id="back_to_gallery_selection">
 				<source>Back to gallery selection</source>
+				<target>Zurück zur Galerie-Auswahl</target>
 			</trans-unit>
 
 			<trans-unit id="error.noGallerySelected">
@@ -25,16 +28,20 @@
 			</trans-unit>
 			<trans-unit id="btn.download">
 				<source>Download</source>
+				<target>Herunterladen</target>
 			</trans-unit>
 			<trans-unit id="btn.download_image">
 				<source>Download image "%s"</source>
+				<target>Das Bild "%s" herunterladen</target>
 			</trans-unit>
 			<trans-unit id="btn.maximize">
 				<source>Maximize in lightbox</source>
+				<target>Maximiere in einer Lightbox</target>
 			</trans-unit>
 
 			<trans-unit id="image.download.alt">
 				<source>Download</source>
+				<target>Herunterladen</target>
 			</trans-unit>
 		</body>
 	</file>

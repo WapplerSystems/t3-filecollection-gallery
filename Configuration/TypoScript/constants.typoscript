@@ -13,7 +13,7 @@ plugin.tx_filecollectiongallery {
     mobile {
 
       image {
-        # cat=plugin.tx_filecollectiongallery/mobile/a; type=string; label=LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.width
+        # cat=plugin.tx_filecollectiongallery/mobile/a; type=int; label=LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.width
         maxWidth = 700
       }
 
@@ -25,9 +25,9 @@ plugin.tx_filecollectiongallery {
 
         image {
           # cat=plugin.tx_filecollectiongallery/desktop-preview/a; type=string; label=LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.width
-          width = 700c
+          width = 300c
           # cat=plugin.tx_filecollectiongallery/desktop-preview/b; type=string; label=LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.height
-          height = 700c
+          height = 300c
         }
 
       }
