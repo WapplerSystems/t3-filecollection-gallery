@@ -6,33 +6,43 @@
 		<body>
 			<trans-unit id="flexforms_tab.settings">
 				<source>General Settings</source>
+				<target>Allgemeine Einstellungen</target>
 			</trans-unit>
 			<trans-unit id="flexforms_general.filecollection">
 				<source>File collection</source>
+				<target>Dateisammlung</target>
 			</trans-unit>
 			<trans-unit id="flexforms_general.createNestedFromFolder">
 				<source>Create nested galleries from recursive folder</source>
+				<target>Erstelle verschachtelte Galerien aus rekursiven Ordnern</target>
 			</trans-unit>
 			<trans-unit id="flexforms_general.itemsperpage">
 				<source>Items per page</source>
+				<target>Elemente pro Seite</target>
 			</trans-unit>
 			<trans-unit id="flexforms_general.numberofpages">
 				<source>Numbers of visible pages</source>
+				<target>Anzahl der sichtbaren Seiten</target>
 			</trans-unit>
 			<trans-unit id="flexforms_general.insertabove">
 				<source>Insert Pagination above list</source>
+				<target>Pagination über der Liste einfügen</target>
 			</trans-unit>
 			<trans-unit id="flexforms_general.insertbelow">
 				<source>Insert Pagination below list</source>
+				<target>Pagination unter der Liste einfügen</target>
 			</trans-unit>
 			<trans-unit id="flexforms_general.enablelightbox">
 				<source>Enable lightbox</source>
+				<target>Lightbox aktivieren</target>
 			</trans-unit>
 			<trans-unit id="flexforms_general.enabledescription">
 				<source>Show file description below image</source>
+				<target>Dateibeschreibung unter dem Bild anzeigen</target>
 			</trans-unit>
 			<trans-unit id="config.templates">
 				<source>Path to extension templates (FE)</source>
+				<target>Pfad zu den Erweiterungsvorlagen (FE)</target>
 			</trans-unit>
 			<trans-unit id="config.partials">
 				<source>Path to extension partials (FE)</source>
@@ -45,60 +55,78 @@
 			</trans-unit>
 			<trans-unit id="config.width">
 				<source>Width of images</source>
+				<target>Breite der Bilder</target>
 			</trans-unit>
 			<trans-unit id="config.height">
 				<source>Height of images</source>
+				<target>Höhe der Bilder</target>
 			</trans-unit>
 			<trans-unit id="config.maxWidth">
 				<source>Maximum width of images</source>
+				<target>Maximale Breite der Bilder</target>
 			</trans-unit>
 			<trans-unit id="config.maxHeight">
 				<source>Maximum height of images</source>
+				<target>Maximale Höhe der Bilder</target>
 			</trans-unit>
 			<trans-unit id="config.download_button">
 				<source>Show download button</source>
+				<target>Download-Button anzeigen</target>
 			</trans-unit>
 			<trans-unit id="config.lightbox">
 				<source>Choose the lightbox related value (Default 'lightbox')</source>
+				<target>Wähle den Lightbox-Wert (Standard 'lightbox')</target>
 			</trans-unit>
 			<trans-unit id="config.enablelightbox">
 				<source>Enable lightbox for default template</source>
+				<target>Lightbox für die Standardvorlage aktivieren</target>
 			</trans-unit>
 			<trans-unit id="config.lightboxWidth">
 				<source>Sets the maximum width for lightbox</source>
+				<target>Setzt die maximale Breite für die Lightbox</target>
 			</trans-unit>
 			<trans-unit id="config.order">
 				<source>Order</source>
+				<target>Reihenfolge</target>
 			</trans-unit>
 			<trans-unit id="config.order.asc">
 				<source>Ascending</source>
+				<target>Aufsteigend</target>
 			</trans-unit>
 			<trans-unit id="config.order.desc">
 				<source>Descending</source>
+				<target>Absteigend</target>
 			</trans-unit>
 			<trans-unit id="config.order.dateasc">
 				<source>Date Ascending</source>
+				<target>Datum aufsteigend</target>
 			</trans-unit>
 			<trans-unit id="config.order.datedesc">
 				<source>Date Descending</source>
+				<target>Datum absteigend</target>
 			</trans-unit>
 			<trans-unit id="config.order.manual">
 				<source>From collection</source>
+				<target>Aus Sammlung</target>
 			</trans-unit>
 			<trans-unit id="config.orderNestedFolder">
 				<source>Order of folders</source>
+				<target>Ordnerreihenfolge</target>
 			</trans-unit>
 			<trans-unit id="plugin.filecollection_gallery.title">
 				<source>Image gallery</source>
+				<target>Bildgalerie</target>
 			</trans-unit>
 			<trans-unit id="plugin.filecollection_gallery.description">
 				<source>Shows a collection of images as gallery</source>
+				<target>Zeigt eine Sammlung von Bildern als Galerie</target>
 			</trans-unit>
 			<trans-unit id="flexforms_general.showNumRows">
 				<source>Show X rows</source>
 			</trans-unit>
 			<trans-unit id="flexforms_general.yes">
 				<source>Yes</source>
+				<target>Ja</target>
 			</trans-unit>
 		</body>
 	</file>
