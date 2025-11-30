@@ -31,21 +31,31 @@ settings:
     type: string
     category: filecollectionGallery.templates
     label: 'Layout Root Path'
-  filecollectiongallery.mobile.image.maxWidth:
+  filecollectiongallery.mobile.image.maxRenderedWidth:
     default: 700
     type: int
     category: filecollectionGallery.mobile
-    label: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.width'
-  filecollectiongallery.desktop.preview.image.width:
+    label: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.maxRenderedWidth'
+  filecollectiongallery.mobile.image.maxViewedWidth:
+    default: 700
+    type: int
+    category: filecollectionGallery.mobile
+    label: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.maxViewedWidth'
+  filecollectiongallery.desktop.preview.image.renderedWidth:
     default: 700c
     type: string
     category: filecollectionGallery.desktop
-    label: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.width'
-  filecollectiongallery.desktop.preview.image.height:
+    label: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.renderedWidth'
+  filecollectiongallery.desktop.preview.image.renderedHeight:
     default: 700c
     type: string
     category: filecollectionGallery.desktop
-    label: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.height'
+    label: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.renderedHeight'
+  filecollectiongallery.desktop.preview.image.maxViewedWidth:
+    default: 300
+    type: int
+    category: filecollectionGallery.desktop
+    label: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.maxViewedWidth'
   filecollectiongallery.downloadButton:
     default: 1
     type: bool

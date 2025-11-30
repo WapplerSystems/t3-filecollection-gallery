@@ -24,15 +24,17 @@ plugin.tx_filecollectiongallery {
 
     mobile {
       image {
-        maxWidth = {$plugin.tx_filecollectiongallery.settings.mobile.image.maxWidth ?? $filecollectiongallery.mobile.image.maxWidth}
+        maxRenderedWidth = {$plugin.tx_filecollectiongallery.settings.mobile.image.maxRenderedWidth ?? $filecollectiongallery.mobile.image.maxRenderedWidth}
+        maxViewedWidth = {$plugin.tx_filecollectiongallery.settings.mobile.image.maxViewedWidth ?? $filecollectiongallery.mobile.image.maxViewedWidth}
       }
     }
 
     desktop {
       preview {
         image {
-          width = {$plugin.tx_filecollectiongallery.settings.desktop.preview.image.width ?? $filecollectiongallery.desktop.preview.image.width}
-          height = {$plugin.tx_filecollectiongallery.settings.desktop.preview.image.height ?? $filecollectiongallery.desktop.preview.image.height}
+          renderedWidth = {$plugin.tx_filecollectiongallery.settings.desktop.preview.image.renderedWidth ?? $filecollectiongallery.desktop.preview.image.renderedWidth}
+          maxViewedWidth = {$plugin.tx_filecollectiongallery.settings.desktop.preview.image.maxViewedWidth ?? $filecollectiongallery.desktop.preview.image.maxViewedWidth}
+          renderedHeight = {$plugin.tx_filecollectiongallery.settings.desktop.preview.image.renderedHeight ?? $filecollectiongallery.desktop.preview.image.renderedHeight}
         }
       }
     }

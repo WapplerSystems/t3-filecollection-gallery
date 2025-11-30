@@ -9,7 +9,6 @@ use TYPO3\CMS\Core\Resource\Exception\InsufficientFolderAccessPermissionsExcepti
 use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
 use TYPO3\CMS\Core\Resource\FileCollectionRepository;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Extbase\Mvc\View\ViewResolverInterface;
 use WapplerSystems\FilecollectionGallery\Service\FileCollectionService;
 use WapplerSystems\FilecollectionGallery\Service\FolderService;
 
@@ -25,8 +24,7 @@ class GalleryController extends ActionController
     public function __construct(
         readonly FileCollectionService $fileCollectionService,
         readonly FileCollectionRepository $fileCollectionRepository,
-        readonly FolderService $folderService,
-        readonly ViewResolverInterface $viewResolver)
+        readonly FolderService $folderService)
     {
 
     }
@@ -108,7 +106,7 @@ class GalleryController extends ActionController
     public function listFromFolderAction($offset = 0): ResponseInterface
     {
         if ($this->settings['fileCollection'] !== '' && $this->settings['fileCollection']) {
-            $cObj = $this->configurationManager->getContentObject();
+            $cObj = $this->request->getAttribute('currentContentObject');
             $currentUid = $cObj->data['uid'];
             $columnPosition = $cObj->data['colPos'];
 
@@ -150,7 +148,7 @@ class GalleryController extends ActionController
     public function nestedAction($offset = 0): ResponseInterface
     {
         if ($this->settings['fileCollection'] !== '' && $this->settings['fileCollection']) {
-            $cObj = $this->configurationManager->getContentObject();
+            $cObj = $this->request->getAttribute('currentContentObject');
             $currentUid = $cObj->data['uid'];
             $columnPosition = $cObj->data['colPos'];
 
@@ -182,7 +180,7 @@ class GalleryController extends ActionController
     public function nestedFromFolderAction($offset = 0): ResponseInterface
     {
         if ($this->settings['fileCollection'] !== '' && $this->settings['fileCollection']) {
-            $cObj = $this->configurationManager->getContentObject();
+            $cObj = $this->request->getAttribute('currentContentObject');
             $currentUid = $cObj->data['uid'];
             $columnPosition = $cObj->data['colPos'];
 
@@ -207,12 +205,11 @@ class GalleryController extends ActionController
 
     protected function htmlErrorResponse(?string $errorLabel = null): ResponseInterface
     {
-        $this->view->setTemplatePathAndFilename('EXT:filecollection_gallery/Resources/Private/Templates/Gallery/Error.html');
         $this->view->assign('errorLabel', $errorLabel);
 
         return $this->responseFactory->createResponse()
             ->withHeader('Content-Type', 'text/html; charset=utf-8')
             ->withStatus(500)
-            ->withBody($this->streamFactory->createStream($this->view->render()));
+            ->withBody($this->streamFactory->createStream($this->view->render('Error')));
     }
 }

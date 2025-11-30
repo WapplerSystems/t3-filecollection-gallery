@@ -13,8 +13,10 @@ plugin.tx_filecollectiongallery {
     mobile {
 
       image {
-        # cat=plugin.tx_filecollectiongallery/mobile/a; type=int; label=LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.width
-        maxWidth = 700
+        # cat=plugin.tx_filecollectiongallery/mobile/a; type=int; label=LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.maxRenderedWidth
+        maxRenderedWidth = 700
+        # cat=plugin.tx_filecollectiongallery/mobile/a; type=int; label=LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.maxViewedWidth
+        maxViewedWidth = 700
       }
 
     }
@@ -24,10 +26,12 @@ plugin.tx_filecollectiongallery {
       preview {
 
         image {
-          # cat=plugin.tx_filecollectiongallery/desktop-preview/a; type=string; label=LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.width
-          width = 700c
-          # cat=plugin.tx_filecollectiongallery/desktop-preview/b; type=string; label=LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.height
-          height = 700c
+          # cat=plugin.tx_filecollectiongallery/desktop-preview/a; type=string; label=LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.renderedWidth
+          renderedWidth = 700c
+          # cat=plugin.tx_filecollectiongallery/desktop-preview/b; type=string; label=LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.renderedHeight
+          renderedHeight = 700c
+          # cat=plugin.tx_filecollectiongallery/desktop-preview/c; type=int; label=LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.maxViewedWidth
+          maxViewedWidth = 300
         }
 
       }

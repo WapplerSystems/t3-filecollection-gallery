@@ -1,2 +1,4 @@
 name: wapplersystems/filecollection-gallery
 label: 'File Collection Gallery'
+dependencies:
+  - typo3/fluid-styled-content
