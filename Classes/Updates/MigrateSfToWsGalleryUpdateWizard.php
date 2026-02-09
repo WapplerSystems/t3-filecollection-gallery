@@ -53,6 +53,10 @@ class MigrateSfToWsGalleryUpdateWizard implements UpgradeWizardInterface, Confir
      */
     public function updateNecessary(): bool
     {
+        if (!$this->listTypeColumnExists()) {
+            return false;
+        }
+
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tt_content');
         $queryBuilder->getRestrictions()->removeAll();
@@ -125,4 +129,17 @@ class MigrateSfToWsGalleryUpdateWizard implements UpgradeWizardInterface, Confir
         return '';
     }
 
+    /**
+     * Prüft, ob die Spalte 'list_type' in 'tt_content' existiert
+     *
+     * @return bool
+     */
+    public function listTypeColumnExists(): bool
+    {
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getConnectionForTable('tt_content');
+        $schemaManager = $connection->createSchemaManager();
+        $columns = $schemaManager->listTableColumns('tt_content');
+        return array_key_exists('list_type', $columns);
+    }
 }
