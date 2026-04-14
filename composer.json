@@ -2,11 +2,20 @@
     "name": "wapplersystems/filecollection_gallery",
     "type": "typo3-cms-extension",
     "description": "Simple Image Gallery which renders a FileCollection containing static or folder based images.",
-    "homepage": "https://github.com/WapplerSystems/t3-filecollection-gallery/",
-    "license": ["GPL-2.0-or-later"],
+    "homepage": "https://github.com/WapplerSystems/t3-filecollection-gallery",
+    "license": "GPL-2.0-or-later",
     "keywords": ["typo3", "extension", "collection", "images", "gallery"],
+    "authors": [
+        {
+            "name": "Sven Wappler",
+            "email": "typo3@wappler.systems",
+            "role": "Developer",
+            "homepage": "https://wappler.systems"
+        }
+    ],
     "support": {
-      "issues": "https://github.com/WapplerSystems/t3-filecollection-gallery/issues"
+        "issues": "https://github.com/WapplerSystems/t3-filecollection-gallery/issues",
+        "source": "https://github.com/WapplerSystems/t3-filecollection-gallery"
     },
     "require": {
         "typo3/cms-core": "^13.4"
