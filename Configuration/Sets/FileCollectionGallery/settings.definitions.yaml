@@ -36,6 +36,11 @@ settings:
     type: int
     category: filecollectionGallery.mobile
     label: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.width'
+  filecollectiongallery.desktop.columns:
+    default: 3
+    type: int
+    category: filecollectionGallery.desktop
+    label: 'Number of columns (desktop)'
   filecollectiongallery.desktop.preview.image.width:
     default: 700c
     type: string

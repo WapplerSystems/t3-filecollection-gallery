@@ -29,6 +29,7 @@ plugin.tx_filecollectiongallery {
     }
 
     desktop {
+      columns = {$plugin.tx_filecollectiongallery.settings.desktop.columns ?? $filecollectiongallery.desktop.columns}
       preview {
         image {
           width = {$plugin.tx_filecollectiongallery.settings.desktop.preview.image.width ?? $filecollectiongallery.desktop.preview.image.width}

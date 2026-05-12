@@ -45,7 +45,7 @@
 
 
         </div>
-        <div class="d-md-block fc-gallery--desktop" style="--gallery-item-width: {settings.desktop.preview.image.width -> f:format.number(decimals: 0)}px">
+        <div class="d-md-block fc-gallery--desktop" style="--gallery-columns: {settings.desktop.columns ?: 3}; --gallery-item-width: {settings.desktop.preview.image.width -> f:format.number(decimals: 0)}px">
             <div class="fc-gallery-grid">
                 <f:for each="{mediaItems}" as="mediaItem">
 

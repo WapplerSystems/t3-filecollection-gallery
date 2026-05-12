@@ -6,6 +6,10 @@
     grid-gap: 10px;
 }
 
+.fc-gallery--desktop .fc-gallery-grid {
+    grid-template-columns: repeat(var(--gallery-columns, 3), 1fr);
+}
+
 .fc-gallery-grid img {
 
 }
