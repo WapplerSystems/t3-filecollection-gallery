@@ -52,7 +52,7 @@ settings:
     category: filecollectionGallery.desktop
     label: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.height'
   filecollectiongallery.downloadButton:
-    default: 1
+    default: 0
     type: bool
     category: filecollectionGallery
     label: 'LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.download_button'
