@@ -35,7 +35,7 @@ plugin.tx_filecollectiongallery {
     }
 
     # cat=plugin.tx_filecollectiongallery/download/b; type=boolean; label=LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:config.download_button
-    downloadButton = 1
+    downloadButton = 0
 
 
     lightbox {
