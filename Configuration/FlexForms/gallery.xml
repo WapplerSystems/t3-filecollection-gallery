@@ -45,5 +45,135 @@
             </ROOT>
         </sDEF>
 
+        <sOverride>
+            <ROOT>
+                <sheetTitle>
+                    LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:flexforms_tab.override
+                </sheetTitle>
+                <type>array</type>
+                <el>
+
+                    <settings.mobile.image.maxWidth>
+                        <label>
+                            LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:flexforms_override.mobile.image.maxWidth
+                        </label>
+                        <description>
+                            LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:flexforms_override.emptyDescription
+                        </description>
+                        <config>
+                            <type>input</type>
+                            <eval>trim,int</eval>
+                            <default></default>
+                            <size>10</size>
+                            <placeholder>
+                                LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:flexforms_override.placeholder
+                            </placeholder>
+                        </config>
+                    </settings.mobile.image.maxWidth>
+
+                    <settings.desktop.preview.image.width>
+                        <label>
+                            LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:flexforms_override.desktop.preview.image.width
+                        </label>
+                        <description>
+                            LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:flexforms_override.emptyDescription
+                        </description>
+                        <config>
+                            <type>input</type>
+                            <eval>trim</eval>
+                            <default></default>
+                            <size>10</size>
+                            <placeholder>
+                                LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:flexforms_override.placeholder
+                            </placeholder>
+                        </config>
+                    </settings.desktop.preview.image.width>
+
+                    <settings.desktop.preview.image.height>
+                        <label>
+                            LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:flexforms_override.desktop.preview.image.height
+                        </label>
+                        <description>
+                            LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:flexforms_override.emptyDescription
+                        </description>
+                        <config>
+                            <type>input</type>
+                            <eval>trim</eval>
+                            <default></default>
+                            <size>10</size>
+                            <placeholder>
+                                LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:flexforms_override.placeholder
+                            </placeholder>
+                        </config>
+                    </settings.desktop.preview.image.height>
+
+                    <settings.downloadButton>
+                        <label>
+                            LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:flexforms_override.downloadButton
+                        </label>
+                        <description>
+                            LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:flexforms_override.emptyDescription
+                        </description>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <default></default>
+                            <items type="array">
+                                <numIndex index="0" type="array">
+                                    <numIndex index="0">LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:flexforms_override.option.inherit</numIndex>
+                                    <numIndex index="1"></numIndex>
+                                </numIndex>
+                                <numIndex index="1" type="array">
+                                    <numIndex index="0">LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:flexforms_override.option.no</numIndex>
+                                    <numIndex index="1">0</numIndex>
+                                </numIndex>
+                                <numIndex index="2" type="array">
+                                    <numIndex index="0">LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:flexforms_override.option.yes</numIndex>
+                                    <numIndex index="1">1</numIndex>
+                                </numIndex>
+                            </items>
+                        </config>
+                    </settings.downloadButton>
+
+                    <settings.lightbox.maxWidth>
+                        <label>
+                            LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:flexforms_override.lightbox.maxWidth
+                        </label>
+                        <description>
+                            LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:flexforms_override.emptyDescription
+                        </description>
+                        <config>
+                            <type>input</type>
+                            <eval>trim,int</eval>
+                            <default></default>
+                            <size>10</size>
+                            <placeholder>
+                                LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:flexforms_override.placeholder
+                            </placeholder>
+                        </config>
+                    </settings.lightbox.maxWidth>
+
+                    <settings.lightbox.maxHeight>
+                        <label>
+                            LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:flexforms_override.lightbox.maxHeight
+                        </label>
+                        <description>
+                            LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:flexforms_override.emptyDescription
+                        </description>
+                        <config>
+                            <type>input</type>
+                            <eval>trim,int</eval>
+                            <default></default>
+                            <size>10</size>
+                            <placeholder>
+                                LLL:EXT:filecollection_gallery/Resources/Private/Language/locallang_be.xlf:flexforms_override.placeholder
+                            </placeholder>
+                        </config>
+                    </settings.lightbox.maxHeight>
+
+                </el>
+            </ROOT>
+        </sOverride>
+
     </sheets>
 </T3DataStructure>

@@ -6,6 +6,42 @@
             <trans-unit id="flexforms_tab.settings">
                 <source>General Settings</source>
             </trans-unit>
+            <trans-unit id="flexforms_tab.override">
+                <source>Override Site Settings</source>
+            </trans-unit>
+            <trans-unit id="flexforms_override.emptyDescription">
+                <source>Leave empty to use the value from the site settings.</source>
+            </trans-unit>
+            <trans-unit id="flexforms_override.placeholder">
+                <source>Use site setting</source>
+            </trans-unit>
+            <trans-unit id="flexforms_override.option.inherit">
+                <source>Use site setting</source>
+            </trans-unit>
+            <trans-unit id="flexforms_override.option.yes">
+                <source>Yes</source>
+            </trans-unit>
+            <trans-unit id="flexforms_override.option.no">
+                <source>No</source>
+            </trans-unit>
+            <trans-unit id="flexforms_override.mobile.image.maxWidth">
+                <source>Mobile image max width</source>
+            </trans-unit>
+            <trans-unit id="flexforms_override.desktop.preview.image.width">
+                <source>Desktop preview image width</source>
+            </trans-unit>
+            <trans-unit id="flexforms_override.desktop.preview.image.height">
+                <source>Desktop preview image height</source>
+            </trans-unit>
+            <trans-unit id="flexforms_override.downloadButton">
+                <source>Show download button</source>
+            </trans-unit>
+            <trans-unit id="flexforms_override.lightbox.maxWidth">
+                <source>Lightbox max width</source>
+            </trans-unit>
+            <trans-unit id="flexforms_override.lightbox.maxHeight">
+                <source>Lightbox max height</source>
+            </trans-unit>
             <trans-unit id="flexforms_general.filecollection">
                 <source>File collection</source>
             </trans-unit>
