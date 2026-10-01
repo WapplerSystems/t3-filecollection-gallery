@@ -39,3 +39,8 @@ $GLOBALS['TCA']['tt_content']['types']['filecollectiongallery_gallery']['showite
             rowDescription,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
     ';
+
+// Inline records inside the plugin FlexForm can't be expanded otherwise, see InlineCollapseSelectorFix
+$GLOBALS['TCA']['tt_content']['ctrl']['container']['inline']['fieldWizard']['filecollectionGalleryInlineCollapseSelectorFix'] = [
+    'renderType' => 'filecollectionGalleryInlineCollapseSelectorFix',
+];
